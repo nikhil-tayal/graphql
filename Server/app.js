@@ -3,6 +3,7 @@ const graphqlHTTP = require("express-graphql");
 const schema = require("./Schema/schema");
 const app = express();
 const mongoose = require("mongoose");
+const cors=require("cors")
 mongoose.connect(`mongodb+srv://nikhil:nikhil123@graphqldb-coazl.mongodb.net/test?retryWrites=true&w=majority`, {
   useUnifiedTopology: true,
   useNewUrlParser: true,
@@ -10,6 +11,7 @@ mongoose.connect(`mongodb+srv://nikhil:nikhil123@graphqldb-coazl.mongodb.net/tes
 mongoose.connection.once("open", () => {
   console.log("MongoDB Connected");
 });
+app.use(cors())
 app.use(
   "/graphql",
   graphqlHTTP({
